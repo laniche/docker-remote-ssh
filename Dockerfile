@@ -22,6 +22,6 @@ RUN mkdir /home/docker/.ssh \
 
 RUN chown -R docker:docker /home/docker/.ssh-external
 
-CMD ssh -o StrictHostKeyChecking=no -o BatchMode=yes -i /home/docker/.ssh-external/id_rsa -p $REMOTE_PORT -L *:$REMOTE_SERVICE:127.0.0.1:$REMOTE_SERVICE -N $REMOTE_USER@$REMOTE_HOST
+CMD ssh -o ServerAliveInterval=30 -o ServerAliveCountMax=1 -o StrictHostKeyChecking=no -o BatchMode=yes -i /home/docker/.ssh-external/id_rsa -p $REMOTE_PORT -L *:$REMOTE_SERVICE:127.0.0.1:$REMOTE_SERVICE -N $REMOTE_USER@$REMOTE_HOST
 
 EXPOSE $REMOTE_SERVICE
